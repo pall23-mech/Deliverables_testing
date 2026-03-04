@@ -5,7 +5,7 @@ Conversational ASR for Icelandic
 
 Author:
     Páll Rúnarsson
-    Engineer
+    Engineer,
     Researcher at Reykjavík University
 
 Developed in collaboration with:
@@ -328,4 +328,5 @@ This project is released under the [Creative Commons Attribution 4.0 Internation
 ## Acknowledgments
 
 Developed at Reykjavík University in collaboration with Tiro as part of the **Málrómur — Conversational ASR for Icelandic** project. Dataset format designed by Páll Rúnarsson. Dataset provided via [CLARIN-IS](https://clarin.is) / Spjallrómur corpus.
+
 
