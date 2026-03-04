@@ -321,12 +321,12 @@ Or set `revai_access_token` in `der_eval/config.py`.
 
 ## License
 
-This project is released under the [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/) license.
-
+DER Evaluation Harness © 2026 by Páll Rúnarsson is licensed under Creative Commons Attribution 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by/4.0/
 ---
 
 ## Acknowledgments
 
 Developed at Reykjavík University in collaboration with Tiro as part of the **Málrómur — Conversational ASR for Icelandic** project. Dataset format designed by Páll Rúnarsson. Dataset provided via [CLARIN-IS](https://clarin.is) / Spjallrómur corpus.
+
 
 
