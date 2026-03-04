@@ -1,0 +1,41 @@
+# ── Core ──────────────────────────────────────────────────────────────────────
+numpy<2.0
+pandas>=2.0
+tqdm
+matplotlib
+
+# ── HuggingFace ───────────────────────────────────────────────────────────────
+datasets>=2.19
+huggingface_hub
+soundfile
+
+# ── PyTorch — pinned for pyannote.audio 3.1 compatibility ────────────────────
+# Install via pip with the correct index URL for your hardware (see README).
+# Do NOT just run pip install -r requirements.txt for torch — use the commands below.
+#
+#   CPU:
+#     pip install torch==2.3.1 torchaudio==2.3.1
+#
+#   CUDA 12.1 (RTX 30xx / 40xx):
+#     pip install torch==2.3.1 torchaudio==2.3.1 --index-url https://download.pytorch.org/whl/cu121
+#
+#   CUDA 11.8 (older GPUs):
+#     pip install torch==2.3.1 torchaudio==2.3.1 --index-url https://download.pytorch.org/whl/cu118
+#
+# After installing torch+torchaudio, install the rest:
+#     pip install -r requirements.txt
+#
+torch==2.4.0
+torchaudio==2.4.0
+
+# ── pyannote ──────────────────────────────────────────────────────────────────
+pyannote.audio>=3.4,<4.0
+pyannote.core
+pyannote.metrics
+
+# ── Audio ─────────────────────────────────────────────────────────────────────
+ffmpeg-python
+
+# ── Optional backends (uncomment what you need) ───────────────────────────────
+# boto3                # AWS Transcribe
+# rev-ai>=2.17         # Rev.ai
