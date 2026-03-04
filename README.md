@@ -12,7 +12,7 @@ Developed in collaboration with:
     Tiro
 
 Contact:
-    pallr at ru.is
+    pallr(at)ru.is
 
 License:
     Creative Commons Attribution 4.0 International (CC BY 4.0)
@@ -328,3 +328,4 @@ This project is released under the [Creative Commons Attribution 4.0 Internation
 ## Acknowledgments
 
 Developed at Reykjavík University in collaboration with Tiro as part of the **Málrómur — Conversational ASR for Icelandic** project. Dataset format designed by Páll Rúnarsson. Dataset provided via [CLARIN-IS](https://clarin.is) / Spjallrómur corpus.
+
