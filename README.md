@@ -1,10 +1,37 @@
+============================================================
+DER Evaluation Harness — Málrómur
+Conversational ASR for Icelandic
+============================================================
+
+Author:
+    Páll Rúnarsson
+    Engineer
+    Researcher at Reykjavík University
+
+Developed in collaboration with:
+    Tiro
+
+Contact:
+    pallr at ru.is
+
+License:
+    Creative Commons Attribution 4.0 International (CC BY 4.0)
+    https://creativecommons.org/licenses/by/4.0/
+
+---
+
 # DER Evaluation Harness
+
+![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue) ![License: CC BY 4.0](https://img.shields.io/badge/license-CC%20BY%204.0-lightgrey) ![Last updated: Mar 2026](https://img.shields.io/badge/last%20updated-Mar%202026-green)
 
 General-purpose **Diarization Error Rate (DER)** evaluation for any diarization
 backend against any HuggingFace speech dataset with gold speaker annotations.
 
 # Background
 Accurate speaker diarization is crucial for downstream ASR tasks like speaker-attributed transcription, meeting summarization, and conversational analytics — especially in low-resource languages like Icelandic. This harness allows fair, offline comparison of local models (pyannote) vs cloud APIs vs external baselines on the same dataset, with resumable runs, failure isolation, and diagnostic plots.
+
+> **Expected DER range:** pyannote 3.1 typically achieves 20–35% DER on Icelandic conversational data like Spjallrómur without domain-specific fine-tuning. Results vary with recording conditions, speaker overlap, and noise.
+
 ---
 
 ## API support notes.
@@ -33,7 +60,7 @@ project/
 │   ├── metrics.py       # reference annotation + evaluation loop
 │   ├── report.py        # console summary + scatter plot
 │   └── __main__.py      # wires all modules together
-├── eval_der.py          # thin top-level entry point
+├── der_eval.py          # thin top-level entry point
 └── requirements.txt
 ```
 
@@ -75,13 +102,13 @@ cannot apply `--index-url` on a per-package basis from a requirements file.
 
 ```bash
 # CPU only
-pip install torch==2.4.0 torchaudio==2.4.0
+pip install torch==2.3.1 torchaudio==2.3.1
 
-# CUDA 12.1  (RTX 30xx / 40xx)
-pip install torch==2.4.0 torchaudio==2.4.0 --index-url https://download.pytorch.org/whl/cu121
+# CUDA 12.1  (recommended — RTX 30xx / 40xx, driver >= 525)
+pip install torch==2.3.1 torchaudio==2.3.1 --index-url https://download.pytorch.org/whl/cu121
 
-# CUDA 11.8  (older GPUs)
-pip install torch==2.4.0 torchaudio==2.4.0 --index-url https://download.pytorch.org/whl/cu118
+# CUDA 11.8  (older GPUs / locked drivers)
+pip install torch==2.3.1 torchaudio==2.3.1 --index-url https://download.pytorch.org/whl/cu118
 ```
 
 ### 4. Install the remaining dependencies
@@ -114,7 +141,7 @@ huggingface-cli login
 Alternatively, pass the token directly at runtime:
 
 ```bash
-python eval_der.py --hf-token hf_yourtoken
+python der_eval.py --hf-token hf_yourtoken
 ```
 
 ---
@@ -146,38 +173,38 @@ Key settings:
 ### Basic run
 
 ```bash
-python eval_der.py
+python der_eval.py
 ```
 
 ### Quick smoke test (2 files)
 
 ```bash
-python eval_der.py --split "train[:2]"
+python der_eval.py --split "train[:2]"
 ```
 
 ### Switch backend
 
 ```bash
 # Pre-computed RTTM files
-python eval_der.py --backend rttm --rttm-dir ./my_rttm_files
+python der_eval.py --backend rttm --rttm-dir ./my_rttm_files
 
 # AWS Transcribe
-python eval_der.py --backend aws
+python der_eval.py --backend aws
 
 # Rev.ai
-python eval_der.py --backend revai
+python der_eval.py --backend revai
 ```
 
 ### Custom dataset
 
 ```bash
-python eval_der.py --dataset my_org/my_dataset --split "test"
+python der_eval.py --dataset my_org/my_dataset --split "test"
 ```
 
 ### Custom output paths
 
 ```bash
-python eval_der.py --results my_results.csv --plot my_plot.png
+python der_eval.py --results my_results.csv --plot my_plot.png
 ```
 
 ### All CLI options
@@ -238,10 +265,10 @@ SPEAKER conv_001 1 4.800 3.200 <NA> <NA> spk_01 <NA> <NA>
 =============================================
   Backend   : pyannote_local
   Dataset   : palli23/Spjallromur-AB-NoOverlap-v3  (train)
-  Processed : 30  |  DER computed: 30
-  Avg DER (unweighted)   : 21.40%
-  Avg DER (dur-weighted) : 20.87%
-  Std deviation          : 5.12%
+  Rows processed : 10  |  DER computed: 10
+  Unweighted average DER : 0.3502  (35.02%)
+  Duration-weighted DER  : 0.3491  (34.91%)
+  Std deviation          : 0.1014  (10.14%)
   Results CSV : diarization_eval_results.csv
 =============================================
 ```
@@ -289,3 +316,15 @@ export REVAI_ACCESS_TOKEN=...
 ```
 
 Or set `revai_access_token` in `der_eval/config.py`.
+
+---
+
+## License
+
+This project is released under the [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/) license.
+
+---
+
+## Acknowledgments
+
+Developed at Reykjavík University in collaboration with Tiro as part of the **Málrómur — Conversational ASR for Icelandic** project. Dataset format designed by Páll Rúnarsson. Dataset provided via [CLARIN-IS](https://clarin.is) / Spjallrómur corpus.
