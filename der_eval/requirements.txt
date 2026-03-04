@@ -1,0 +1,39 @@
+# ── Core ──────────────────────────────────────────────────────────────────────
+numpy<2.0
+pandas>=2.0,<3.0
+tqdm
+matplotlib
+
+# ── HuggingFace ───────────────────────────────────────────────────────────────
+datasets>=2.19
+huggingface_hub
+soundfile
+
+# ── PyTorch — install BEFORE running pip install -r requirements.txt ──────────
+#
+#   CPU:
+#     pip install torch==2.3.1 torchaudio==2.3.1
+#
+#   CUDA 12.1  (RTX 30xx / 40xx / A-series):
+#     pip install torch==2.3.1 torchaudio==2.3.1 --index-url https://download.pytorch.org/whl/cu121
+#
+#   CUDA 11.8  (older GPUs):
+#     pip install torch==2.3.1 torchaudio==2.3.1 --index-url https://download.pytorch.org/whl/cu118
+#
+# Then verify:
+#     python -c "import torch; print(torch.__version__, torch.cuda.is_available())"
+#
+torch==2.3.1
+torchaudio==2.3.1
+
+# ── pyannote — pinned to 3.1.x, before TorchCodec was introduced ─────────────
+pyannote.audio==3.1.1
+pyannote.core>=5.0,<6.0
+pyannote.metrics>=3.2,<4.0
+
+# ── Audio ─────────────────────────────────────────────────────────────────────
+ffmpeg-python
+
+# ── Optional backends (uncomment what you need) ───────────────────────────────
+# boto3                # AWS Transcribe
+# rev-ai>=2.17         # Rev.ai
